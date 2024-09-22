@@ -1,1 +1,1 @@
-# Página web que calcula o lucro líquido de um motorista de app
+# Calcula o lucro líquido mensal de um motorista de app
