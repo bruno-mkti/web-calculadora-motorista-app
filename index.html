@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Lucro Líquido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Lucro Líquido Motorista App</h1>
+    <form id="calcForm">
+        <label for="kmMes">Km percorrida por mês:</label>
+        <input type="number" id="kmMes" step="0.01" required>
+        
+        <label for="kmMediaCarro">Km média do carro (km por litro):</label>
+        <input type="number" id="kmMediaCarro" step="0.01" required>
+        
+        <label for="valorCombustivel">Valor do combustível (por litro):</label>
+        <input type="number" id="valorCombustivel" step="0.01" required>
+        
+        <label for="multa">Gastos pessoais (alimentação...):</label>
+        <input type="number" id="multa" step="0.01" required>
+        
+        <label for="manutencao">Gastos com carro (manutenção e multas):</label>
+        <input type="number" id="manutencao" step="0.01" required>
+        
+        <label for="valorGanhoApp">Valor ganho total no app:</label>
+        <input type="number" id="valorGanhoApp" step="0.01" required>
+        
+        <button type="button" onclick="calcularLucro()">Calcular Lucro Líquido</button>
+    </form>
+
+    <div class="result" id="resultado"></div>
+
+    <script>
+        function calcularLucro() {
+            // Pega os valores dos inputs
+            const kmMes = parseFloat(document.getElementById('kmMes').value);
+            const kmMediaCarro = parseFloat(document.getElementById('kmMediaCarro').value);
+            const valorCombustivel = parseFloat(document.getElementById('valorCombustivel').value);
+            const multa = parseFloat(document.getElementById('multa').value);
+            const manutencao = parseFloat(document.getElementById('manutencao').value);
+            const valorGanhoApp = parseFloat(document.getElementById('valorGanhoApp').value);
+            
+            // Calcula o gasto de combustível por mês
+            const gastoCombustivel = (kmMes / kmMediaCarro) * valorCombustivel;
+            
+            // Calcula o ganho líquido
+            const ganhoLiquido = valorGanhoApp - multa - manutencao - gastoCombustivel;
+            
+            // Exibe o resultado
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.textContent = `O lucro líquido do motorista é R$ ${ganhoLiquido.toFixed(2)} por mês.`;
+        }
+    </script>
+</body>
+</html>
